@@ -7,12 +7,14 @@ const {
     DELETE
 } = require('../controlers/goals')
 
-router.get('/', GET)
+router
+    .route('/')
+    .get(GET)
+    .post(POST)
 
-router.post('/', POST)
-
-router.put('/:id', PUT)
-
-router.delete('/:id', DELETE)
+router
+    .route('/:id')
+    .put(PUT)
+    .delete(DELETE)
 
 module.exports = router
