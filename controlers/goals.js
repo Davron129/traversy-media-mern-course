@@ -2,7 +2,7 @@
 // @route GET /api/goals
 // @access Private
 
-const GET = (req, res) => {
+const GET = async (req, res) => {
     res.status(200).json({
         status: true,
         message: "Get all goals"
@@ -13,7 +13,12 @@ const GET = (req, res) => {
 // @route POST /api/goals
 // @access Private
 
-const POST = (req, res) => {
+const POST = async (req, res) => {
+    if(!req.body.message) {
+        res.status(400)
+        throw new Error("Please add text field")
+    }
+
     res.status(200).json({
         status: true,
         message: "Add new Goal"
@@ -24,7 +29,7 @@ const POST = (req, res) => {
 // @route PUT /api/goals/:id
 // @access Private
 
-const PUT = (req, res) => {
+const PUT = async (req, res) => {
     res.status(200).json({
         status: true,
         message: "Edit Goal " + req.params.id
@@ -35,7 +40,7 @@ const PUT = (req, res) => {
 // @route DELETE /api/goals/:id
 // @access Private
 
-const DELETE = (req, res) => {
+const DELETE = async (req, res) => {
     res.status(200).json({
         status: true,
         message: "Delete Goal " + req.params.id
